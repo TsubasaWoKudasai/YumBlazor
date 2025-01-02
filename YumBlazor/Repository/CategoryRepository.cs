@@ -14,13 +14,13 @@ namespace YumBlazor.Repository
             _db = db;
         }
 
-        public async Task<Category> Create(Category obj)
+        public async Task<Category> CreateAsync(Category obj)
         {
             await _db.Category.AddAsync(obj);
             await _db.SaveChangesAsync();
             return obj;
         }
-        public async Task<bool> Delete(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
             var obj = await _db.Category.FirstOrDefaultAsync(u => u.Id == id);
             if (obj != null)
@@ -30,7 +30,7 @@ namespace YumBlazor.Repository
             }
             return false;
         }
-        public async Task<Category> Get(int id)
+        public async Task<Category> GetAsync(int id)
         {
             var obj = await _db.Category.FirstOrDefaultAsync(u => u.Id == id);
             if (obj != null)
@@ -40,11 +40,11 @@ namespace YumBlazor.Repository
             }
             return obj;
         }
-        public async Task<IEnumerable<Category>> GetAll()
+        public async Task<IEnumerable<Category>> GetAllAsync()
         {
             return await _db.Category.ToListAsync();
         }
-        public async Task<Category> Update(Category obj)
+        public async Task<Category> UpdateAsync(Category obj)
         {
             var objFromDb = await _db.Category.FirstOrDefaultAsync(u => u.Id == obj.Id);
             if (objFromDb is not null)
