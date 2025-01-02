@@ -47,7 +47,7 @@ else
 									@obj.Name
 								</td>
 								<td>
-									<a href=@("category/update/{obj.Id}") class="btn btn-primary">
+									<a href=@($"category/update/{obj.Id}") class="btn btn-primary">
 										<i class="bi bi-pencil-square"></i>Edit
 									</a>
 									<button class="btn btn-danger">
@@ -67,9 +67,9 @@ else
 	private bool IsProcessing { get; set; } = true;
 	private IEnumerable<Category> Categories { get; set; } = new List<Category>();
 
-	protected override async Task OnInitializedAsync()
-	{
-	}
+	// protected override async Task OnInitializedAsync()
+	// {
+	// }
 
 	protected override async Task OnAfterRenderAsync(bool firstRender)
 	{
