@@ -3,6 +3,7 @@
 
 @inject ICategoryRepository _categoryRepository
 @inject NavigationManager _navigationManager
+@inject IJSRuntime _JS
 
 @if (IsProcessing)
 {
@@ -76,21 +77,23 @@ else
 			Category = await _categoryRepository.GetAsync(Id);
 		}
 		IsProcessing = false;
-	
+
 	}
 
-    private async Task UpsertCategory()
-    {
-        IsProcessing = true;
+	private async Task UpsertCategory()
+	{
+		IsProcessing = true;
 		if (Category.Id == 0)
-        {
-            //create
-            await _categoryRepository.CreateAsync(Category);
-        }
+		{
+		//create
+			await _categoryRepository.CreateAsync(Category);
+			await _JS.ToastrSuccess("Category created successfully!");
+		}
         else
         {
             //update
             await _categoryRepository.UpdateAsync(Category);
+			await _JS.ToastrSuccess("Category updated successfully!");
         }
         IsProcessing = false;
         _navigationManager.NavigateTo("category");
