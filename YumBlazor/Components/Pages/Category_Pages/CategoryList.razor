@@ -1,16 +1,17 @@
 ﻿@page "/category"
 @inject ICategoryRepository _categoryRepository
 
-@if(IsProcessing)
+@if (IsProcessing)
 {
 	<div class="position-absolute w-75 h-75 d-flex flex-column align-items-center bg-white justify-content-center">
-		<img src="/lib/bootstrap/Images/loading.gif" alt="loading"/>
+		<img src="/lib/bootstrap/Images/loading.gif" alt="loading" />
 	</div>
 }
-else{
+else
+{
 	<div class="card shadow border-0 mt-4">
-		<div class="card-header bg-black bg-gradient ml-0 py-3">		
-			<div class="row">			
+		<div class="card-header bg-black bg-gradient ml-0 py-3">
+			<div class="row">
 				<div class="col-12 text-center">
 					<h2 class="text-white py-2"> Category List</h2>
 				</div>
@@ -21,13 +22,13 @@ else{
 	<div class="card-body p-4">
 		<div class="row pb-3">
 			<div class="col-12 text-end">
-				<button class="btn btn-lg btn-secondary" style="width:250px;">Add New Category</button>	
+				<a href="/category/create" class="btn btn-lg btn-secondary" style="width:250px;">Add New Category</a>
 			</div>
 			<div>
 				<p>Categories List</p>
 			</div>
 
-			@if(Categories.Any())
+			@if (Categories.Any())
 			{
 				<table class="table table-bordered table-striped">
 					<thead>
@@ -37,14 +38,15 @@ else{
 						</tr>
 					</thead>
 					<tbody>
-						@foreach(var obj in Categories)
+						@foreach (var obj in Categories)
 						{
 							<tr>
 								<td>
 									@obj.Name
 								</td>
 								<td>
-									Buttons
+									<a href=@("category/update/{obj.Id}") class="btn btn-primary">Edit</a>
+									<button class="btn btn-danger">Delete</button>
 								</td>
 							</tr>
 						}
@@ -56,21 +58,28 @@ else{
 }
 
 @code {
-	private bool IsProcessing { get; set; } = false;
+	private bool IsProcessing { get; set; } = true;
 	private IEnumerable<Category> Categories { get; set; } = new List<Category>();
 
 	protected override async Task OnInitializedAsync()
 	{
-		IsProcessing = true;
-		await Task.Yield();
-		LoadCategories();
-		IsProcessing = false;
 	}
 
-	private void LoadCategories()
+	protected override async Task OnAfterRenderAsync(bool firstRender)
 	{
-		Thread.Sleep(3000);
-		Categories = _categoryRepository.GetAll();
+		if (firstRender)
+		{
+			await LoadCategories();
+			IsProcessing = false;
+			StateHasChanged();
+		}
+		// return base.OnAfterRenderAsync(firstRender);
+	}
+
+
+	private async Task LoadCategories()
+	{
+		Categories = await _categoryRepository.GetAllAsync();
 	}
 
 }
