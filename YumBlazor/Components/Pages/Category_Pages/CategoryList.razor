@@ -1,5 +1,6 @@
 ﻿@page "/category"
 @inject ICategoryRepository _categoryRepository
+@inject IJSRuntime _JS
 
 <YumBlazor.Components.Shared.BsModal></YumBlazor.Components.Shared.BsModal>
 
@@ -68,6 +69,7 @@ else
 @code {
 	private bool IsProcessing { get; set; } = true;
 	private IEnumerable<Category> Categories { get; set; } = new List<Category>();
+	private int DeleteCategoryID { get; set; } = 0;
 
 	// protected override async Task OnInitializedAsync()
 	// {
@@ -90,4 +92,9 @@ else
 		Categories = await _categoryRepository.GetAllAsync();
 	}
 
+	private void HandleDelete(int id)
+	{
+		DeleteCategoryID = id;
+		_JS.InvokeVoidAsync("ShowCOnfirmationModal");
+	}
 }
