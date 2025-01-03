@@ -5,6 +5,6 @@
 
 function HideConfirmationModal()
 {
-    bootstrap.Modal.getOrCreateInstance(document.getElementById('exampleModal')).hide();
+    bootstrap.Modal.getOrCreateInstance(document.getElementById('bsConfirmationModal')).hide();
 }
 
