@@ -40,6 +40,9 @@ else
 					<thead>
 						<tr>
 							<th>Name</th>
+							<th>Price</th>
+							<th>Special Tag</th>
+							<th>Category</th>
 							<th></th>
 						</tr>
 					</thead>
@@ -47,9 +50,10 @@ else
 						@foreach (var obj in Products)
 						{
 							<tr>
-								<td>
-									@obj.Name
-								</td>
+								<td>@obj.Name</td>
+								<td>@obj.Price.ToString()</td>
+								<td>@obj.SpecialTag</td>
+								<td>@obj.Category.Name</td>
 								<td>
 									<a href=@($"product/update/{obj.Id}") class="btn btn-primary">
 										<i class="bi bi-pencil-square"></i>Edit
