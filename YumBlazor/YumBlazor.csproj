@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\images\category\**" />
+    <Content Remove="wwwroot\images\category\**" />
+    <EmbeddedResource Remove="wwwroot\images\category\**" />
+    <None Remove="wwwroot\images\category\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="9.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0" />
@@ -17,7 +24,7 @@
 
   <ItemGroup>
     <Folder Include="ViewModels\" />
-    <Folder Include="wwwroot\Images\category\" />
+    <Folder Include="wwwroot\images\products\" />
   </ItemGroup>
 
 </Project>
