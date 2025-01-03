@@ -43,6 +43,11 @@ else
 						<ValidationMessage For="@(() => Product.Price)" />
 					</div>
 					<div class="form-floating py-3 col-12">
+						<InputText @bind-Value="Product.SpecialTag" class="form-control" id="SpecialTag" placeholder="Description" />
+						<label for="SpecialTag">Special tag</label>
+						<ValidationMessage For="@(() => Product.Price)" />
+					</div>
+					<div class="form-floating py-3 col-12">
 						<InputSelect @bind-Value="Product.CategoryId" class="form-control" id="CategoryId" placeholder="CategoryId">
 							<option value="">-Select Category-</option>
 							@foreach (var category in _categories)
@@ -54,16 +59,19 @@ else
 						<ValidationMessage For="@(() => Product.CategoryId)" />
 					</div>
 					<div class="form-floating py-3 col-12">
-						<InputFile OnChange="LoadFiles" class="form-control" id="customFile"
+						@if (Product.ImageUrl == null)
+						{		
+						<InputFile OnChange="LoadFiles" class="form-control pb-3" id="customFile"
 						accept="image/x-png,image/jpeg" ></InputFile>
 						<label for="customFile">Upload Image</label>
+						}
 						@if(Product.ImageUrl != null){
-							<div class="row p-3">
+							<div class="row">
 								<div class="col-3">
 									<img src="@Product.ImageUrl" alt="..." class="img-thumbnail"/>
 								</div>
 								<div class="col-md-9">
-								<div class="bi bi-trash btn btn-outline-danger">Remove</div>
+									<div class="bi bi-trash btn btn-outline-danger"@onclick="DeleteImage">Remove</div>
 								</div>
 							</div>
 						}
@@ -161,4 +169,17 @@ else
 		Product.ImageUrl = $"/images/products/{newFileName}";
 		IsProcessing = false;
 	}
+
+    void DeleteImage()
+    {
+        if (Product.ImageUrl == null)
+            return;
+            var fileToDelete = Product.ImageUrl.Split('/').Reverse().First();
+        var filePathToDeleteImage = Path.Combine(_directoryPath, fileToDelete);
+        if (!File.Exists(filePathToDeleteImage))
+            return;
+            File.Delete(filePathToDeleteImage);
+            Product.ImageUrl = null;
+            return;
+    }
 }
