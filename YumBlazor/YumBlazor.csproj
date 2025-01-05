@@ -8,9 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ViewModels\**" />
     <Compile Remove="wwwroot\images\category\**" />
+    <Content Remove="ViewModels\**" />
     <Content Remove="wwwroot\images\category\**" />
+    <EmbeddedResource Remove="ViewModels\**" />
     <EmbeddedResource Remove="wwwroot\images\category\**" />
+    <None Remove="ViewModels\**" />
     <None Remove="wwwroot\images\category\**" />
   </ItemGroup>
 
@@ -23,7 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModels\" />
     <Folder Include="wwwroot\images\products\" />
   </ItemGroup>
 
