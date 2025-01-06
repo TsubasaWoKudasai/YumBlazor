@@ -14,7 +14,7 @@ namespace YumBlazor.Data
         public string? SpecialTag { get; set; }
         public int CategoryId { get; set; }
         [ForeignKey("CategoryId")]
-        public virtual Category Category { get; set; }
+        public Category Category { get; set; }
 
         public string? ImageUrl { get; set; }
 

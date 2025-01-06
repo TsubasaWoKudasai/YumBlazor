@@ -12,7 +12,7 @@ using YumBlazor.Data;
 namespace YumBlazor.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241230184457_AddCategoryAndSeedTable")]
+    [Migration("20240508140603_AddCategoryAndSeedTable")]
     partial class AddCategoryAndSeedTable
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace YumBlazor.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("CategoryVersion", "9.0.0")
+                .HasAnnotation("ProductVersion", "9.0.0-preview.3.24172.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);

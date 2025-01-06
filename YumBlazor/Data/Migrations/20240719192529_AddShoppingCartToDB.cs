@@ -5,7 +5,7 @@
 namespace YumBlazor.Migrations
 {
     /// <inheritdoc />
-    public partial class AddShoppingCartToDb : Migration
+    public partial class AddShoppingCartToDB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
