@@ -15,7 +15,7 @@
 }
 else
 {
-	<div class="card shadow border-0 mt-4">
+	<div class="card shadow border-0 m-4">
 		<div class="card-header bg-black bg-gradient ml-0 py-3">
 			<div class="row">
 				<div class="col-12 text-center">
@@ -60,18 +60,19 @@ else
 					</div>
 					<div class="form-floating py-3 col-12">
 						@if (Product.ImageUrl == null)
-						{		
-						<InputFile OnChange="LoadFiles" class="form-control pb-3" id="customFile"
-						accept="image/x-png,image/jpeg" ></InputFile>
-						<label for="customFile">Upload Image</label>
+						{
+							<InputFile OnChange="LoadFiles" class="form-control pb-3" id="customFile"
+									   accept="image/x-png,image/jpeg"></InputFile>
+							<label for="customFile">Upload Image</label>
 						}
-						@if(Product.ImageUrl != null){
+						@if (Product.ImageUrl != null)
+						{
 							<div class="row">
 								<div class="col-3">
-									<img src="@Product.ImageUrl" alt="..." class="img-thumbnail"/>
+									<img src="@Product.ImageUrl" alt="..." class="img-thumbnail" />
 								</div>
 								<div class="col-md-9">
-									<div class="bi bi-trash btn btn-outline-danger"@onclick="DeleteImage">Remove</div>
+									<div class="bi bi-trash btn btn-outline-danger" @onclick="DeleteImage">Remove</div>
 								</div>
 							</div>
 						}
@@ -155,7 +156,7 @@ else
 	{
 		IsProcessing = true;
 		var file = e.File;
-		FileInfo fileInfo = new (file.Name);
+		FileInfo fileInfo = new(file.Name);
 		var newFileName = $"{Guid.NewGuid()}.{fileInfo.Extension}";
 		if (!Directory.Exists(_directoryPath))
 		{
@@ -170,16 +171,20 @@ else
 		IsProcessing = false;
 	}
 
-    void DeleteImage()
-    {
-        if (Product.ImageUrl == null)
-            return;
-            var fileToDelete = Product.ImageUrl.Split('/').Reverse().First();
-        var filePathToDeleteImage = Path.Combine(_directoryPath, fileToDelete);
-        if (!File.Exists(filePathToDeleteImage))
-            return;
-            File.Delete(filePathToDeleteImage);
-            Product.ImageUrl = null;
-            return;
-    }
+	void DeleteImage()
+	{
+		if (Product.ImageUrl == null)
+
+			return;
+		var fileToDelete = Product.ImageUrl.Split('/').Reverse().First();
+		var filePathToDeleteImage = Path.Combine(_directoryPath, fileToDelete);
+		if (!File.Exists(filePathToDeleteImage))
+		{
+			Product.ImageUrl = null;
+			return;
+		}
+		File.Delete(filePathToDeleteImage);
+		Product.ImageUrl = null;
+		return;
+	}
 }
