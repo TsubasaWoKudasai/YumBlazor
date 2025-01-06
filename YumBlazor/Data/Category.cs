@@ -2,13 +2,11 @@
 
 namespace YumBlazor.Data
 {
-    public class Category
-    {
+	public class Category
+	{
+		public int Id { get; set; }
 
-        public int Id { get; set; }
-
-        [Required(ErrorMessage = "Please Enter name...")]
-        public string Name { get; set; }
-
-    }
+		[Required(ErrorMessage = "Please enter name..")]
+		public string Name { get; set; }
+	}
 }
