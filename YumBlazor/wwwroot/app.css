@@ -50,6 +50,7 @@ h1:focus {
     border-color: #929292;
 }
 
+
 .jumbotron-custom {
     background: linear-gradient(to right, #2c536499, #203a4399, #0f202799), url(https://dotnetmasteryimages.blob.core.windows.net/yumblazor/searchImage.jpg) center;
     background-size: cover;
@@ -74,6 +75,8 @@ span.nav-link.active {
     border-bottom: 3px solid #198754;
     color: #198754 !important;
 }
+
+
 
 .mark-up-string * {
     background: transparent !important;
