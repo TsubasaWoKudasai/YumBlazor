@@ -23,6 +23,10 @@ namespace YumBlazor.Data
         [Display(Name = "Email")]
         [Required]
         public string Email { get; set; }
+
+        public string? SessionId { get; set; }
+        public string? PaymentIntentId { get; set; }
+
         public ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
     }
 }
